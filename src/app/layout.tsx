@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter, Clash_Grotesk } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const clash = Clash_Grotesk({ subsets: ['latin'], variable: '--font-clash' })
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-clash' })
 
 export const metadata: Metadata = {
   title: 'Storyboard Optimization Brief',
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${clash.variable} font-inter bg-primary-dark text-primary-light`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-inter bg-primary-dark text-primary-light`}>
         {children}
       </body>
     </html>
