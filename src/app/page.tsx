@@ -1,5 +1,6 @@
 'use client'
 
+// Build timestamp: Force redeploy to Vercel
 export default function Home() {
   return (
     <main className="bg-primary-dark text-primary-light">
