@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Clash+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-primary-dark text-primary-light;
+}
+
+/* Design Tokens as CSS Variables */
+:root {
+  --color-primary-dark: #1a1a2e;
+  --color-primary-light: #f8f7f4;
+  --color-accent-orange: #ff6b35;
+  --color-accent-purple: #7c3aed;
+  --color-grey-medium: #6b7280;
+  --color-grey-dark: #374151;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+
+  --duration-micro: 150ms;
+  --duration-standard: 300ms;
+  --duration-long: 500ms;
+  --duration-longer: 700ms;
+  --duration-longest: 1000ms;
+}
+
+/* Headings */
+h1 { @apply font-clash font-bold text-h1; }
+h2 { @apply font-clash font-bold text-h2; }
+h3 { @apply font-clash font-semibold text-h3; }
+h4 { @apply font-clash font-semibold text-h4; }
+h5 { @apply font-clash font-medium text-h5; }
+
+/* Utility Classes */
+.text-gradient-orange {
+  background: linear-gradient(to right, #ff6b35, #ff8a50);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.transition-smooth {
+  transition: all var(--duration-standard) var(--ease-standard);
+}
+
+.transition-fast {
+  transition: all var(--duration-micro) var(--ease-standard);
+}
+
+/* Focus States */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #ff6b35;
+  outline-offset: 2px;
+}
+
+/* Smooth Scrolling */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
