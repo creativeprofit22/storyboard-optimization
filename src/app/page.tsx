@@ -199,7 +199,7 @@ export default function Home() {
         <section className="min-h-screen w-full bg-primary-light text-primary-dark py-20 px-4 sm:px-8 lg:px-16">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">LET'S BUILD THIS TOGETHER</h2>
-          <StaggeredContainer className="space-y-6 text-body mb-12">
+          <StaggeredContainer className="space-y-6 text-body">
             <StaggeredChild>
               <p>Here's the honest bit: this is early stage. We've got the framework sketched out. We've got the philosophy locked in. What we don't have yet is your voice in the room.</p>
             </StaggeredChild>
@@ -212,13 +212,13 @@ export default function Home() {
             <StaggeredChild>
               <p>Your feedback shapes what comes next. Your input decides priorities. Your voice decides whether this becomes a real alternative or just another pretty concept.</p>
             </StaggeredChild>
+            <StaggeredChild>
+              <div className="bg-primary-dark text-primary-light p-8 rounded-lg">
+                <p className="text-body-lg font-semibold mb-4">Tell us what you think. Tell us what you need. Tell us how storyboarding has let you down.</p>
+                <p className="text-body opacity-90">We're listening. And we're building this thing for people like you.</p>
+              </div>
+            </StaggeredChild>
           </StaggeredContainer>
-          <StaggeredChild>
-            <div className="bg-primary-dark text-primary-light p-8 rounded-lg">
-              <p className="text-body-lg font-semibold mb-4">Tell us what you think. Tell us what you need. Tell us how storyboarding has let you down.</p>
-              <p className="text-body opacity-90">We're listening. And we're building this thing for people like you.</p>
-            </div>
-          </StaggeredChild>
             <div className="mt-12 p-8 border-2 border-primary-dark rounded-lg text-center bg-neutral-50">
               <p className="text-body-lg text-primary-dark opacity-70">📧 Feedback form coming next</p>
             </div>
