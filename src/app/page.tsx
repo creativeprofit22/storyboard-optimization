@@ -174,7 +174,7 @@ export default function Home() {
       {/* SECTION 7: FRAMEWORK */}
       <AnimatedSection>
         <section className="min-h-screen w-full bg-primary-dark py-20 px-4 sm:px-8 lg:px-16">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-h2 mb-6">THE FRAMEWORK</h2>
             <StaggeredContainer className="space-y-10">
               <StaggeredChild>

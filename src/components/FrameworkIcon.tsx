@@ -62,7 +62,7 @@ export function FrameworkIcon({
       onMouseLeave={() => setIsHovered(false)}
       {...hoverProps}
     >
-      <div className="relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28">
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32">
         {/* Background circle with accent color */}
         <motion.div
           className="absolute inset-0 rounded-full bg-accent-orange opacity-10 group-hover:opacity-20 transition-opacity duration-300"
