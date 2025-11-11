@@ -1,0 +1,17 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Left person -->
+  <circle cx="30" cy="25" r="6" stroke="#ff6b35" stroke-width="2"/>
+  <path d="M24 35 L24 50 L36 50" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Center person (larger) -->
+  <circle cx="50" cy="20" r="7" stroke="#ff6b35" stroke-width="2"/>
+  <path d="M42 32 L42 50 L58 50" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Right person -->
+  <circle cx="70" cy="25" r="6" stroke="#ff6b35" stroke-width="2"/>
+  <path d="M64 35 L64 50 L76 50" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Connection lines -->
+  <path d="M36 45 L64 45" stroke="#ff6b35" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
+  <path d="M30 55 L70 55" stroke="#ff6b35" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
+</svg>

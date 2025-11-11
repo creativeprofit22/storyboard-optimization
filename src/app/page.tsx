@@ -183,45 +183,112 @@ export default function Home() {
                 </div>
               </StaggeredChild>
 
-              {/* Framework Icons Grid */}
+              {/* Framework Principles Grid with Icons & Text */}
               <StaggeredChild>
-                <FrameworkIconGrid className="my-16">
-                  <FrameworkIcon icon="sketch" title="Protect the Sketch" />
-                  <FrameworkIcon icon="collaboration" title="Deepen Collaboration" />
-                  <FrameworkIcon icon="rhythm" title="Rhythm Over Speed" />
-                  <FrameworkIcon icon="intention" title="Intention Over Automation" />
-                  <FrameworkIcon icon="simplicity" title="Simplicity as a Feature" />
-                </FrameworkIconGrid>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 mt-16">
+                  {/* Principle 1 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                        <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" stroke="currentColor" strokeWidth="2.5" fill="none"/>
+                        <path d="M45 35 Q50 40 55 35" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                        <path d="M40 50 L60 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                        <path d="M45 65 Q50 60 55 65" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-h5 text-accent-orange mb-3">Protect the Sketch</h3>
+                    <p className="text-sm text-primary-light opacity-80">Sketching is where ideas are born. We keep that space sacred, free from judgment.</p>
+                  </div>
+
+                  {/* Principle 2 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                        <circle cx="30" cy="25" r="6" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M24 35 L24 50 L36 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                        <circle cx="50" cy="20" r="7" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M42 32 L42 50 L58 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                        <circle cx="70" cy="25" r="6" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M64 35 L64 50 L76 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                        <path d="M36 45 L64 45" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3,3" opacity="0.6"/>
+                        <path d="M30 55 L70 55" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3,3" opacity="0.6"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-h5 text-accent-orange mb-3">Deepen Collaboration</h3>
+                    <p className="text-sm text-primary-light opacity-80">Real teamwork through shared thinking, not just file access.</p>
+                  </div>
+
+                  {/* Principle 3 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                        <path d="M20 50 Q30 30 40 50 T60 50 T80 50" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="25" cy="50" r="3" fill="currentColor"/>
+                        <circle cx="50" cy="50" r="3" fill="currentColor"/>
+                        <circle cx="75" cy="50" r="3" fill="currentColor"/>
+                        <path d="M20 65 L20 75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        <path d="M50 65 L50 75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        <path d="M80 65 L80 75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-h5 text-accent-orange mb-3">Rhythm Over Speed</h3>
+                    <p className="text-sm text-primary-light opacity-80">Respect the natural pace of creative work.</p>
+                  </div>
+
+                  {/* Principle 4 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                        <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="2"/>
+                        <circle cx="50" cy="50" r="23" stroke="currentColor" strokeWidth="2"/>
+                        <circle cx="50" cy="50" r="11" stroke="currentColor" strokeWidth="2"/>
+                        <circle cx="50" cy="50" r="4" fill="currentColor"/>
+                        <path d="M50 15 L55 25 L50 22 L45 25 Z" fill="currentColor"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-h5 text-accent-orange mb-3">Intention Over Automation</h3>
+                    <p className="text-sm text-primary-light opacity-80">AI serves your vision, not the other way around.</p>
+                  </div>
+
+                  {/* Principle 5 */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                        <path d="M30 60 L50 45 L70 60 L70 80 L30 80 Z" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinejoin="round"/>
+                        <path d="M50 45 L50 65" stroke="currentColor" strokeWidth="2.5" fill="none"/>
+                        <path d="M30 60 L50 45" stroke="currentColor" strokeWidth="2.5" fill="none"/>
+                        <path d="M70 60 L50 45" stroke="currentColor" strokeWidth="2.5" fill="none"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-h5 text-accent-orange mb-3">Simplicity as Feature</h3>
+                    <p className="text-sm text-primary-light opacity-80">Focused capabilities, beautifully executed.</p>
+                  </div>
+                </div>
               </StaggeredChild>
 
+              {/* Full Descriptions Below */}
               <StaggeredChild>
-                <div>
-                  <h3 className="text-h4 text-accent-orange mb-4">1. Protect the Sketch</h3>
-                  <p className="text-body opacity-90">Sketching is where ideas are born. Not perfectly rendered, not polished, not ready — just real. Our framework keeps that space sacred. You can rough-sketch ideas without your tool judging them, optimising them, or trying to finish them. The sketch stays rough until you decide it's ready to evolve. The tool gets out of the way and lets your brain work.</p>
-                </div>
-              </StaggeredChild>
-              <StaggeredChild>
-                <div>
-                  <h3 className="text-h4 text-accent-orange mb-4">2. Deepen Collaboration</h3>
-                  <p className="text-body opacity-90">Real collaboration isn't about everyone having access to the same file. It's about everyone having access to the same thinking process. Our framework builds in space for actual dialogue about creative decisions. Feedback that's tied to intention. Discussion that shapes the work before it becomes fixed. It's slow. It's deliberate. It's how great creative work actually gets made.</p>
-                </div>
-              </StaggeredChild>
-              <StaggeredChild>
-                <div>
-                  <h3 className="text-h4 text-accent-orange mb-4">3. Rhythm Over Speed</h3>
-                  <p className="text-body opacity-90">Good creative work has a rhythm. Sketching. Thinking. Discussing. Refining. Sketching again. Most tools try to collapse this into a single fast process. Our framework respects the natural rhythm of creative work. Some moments need to be fast. Some need to be slow. The tool adapts to the creative process, not the other way around.</p>
-                </div>
-              </StaggeredChild>
-              <StaggeredChild>
-                <div>
-                  <h3 className="text-h4 text-accent-orange mb-4">4. Intention Over Automation</h3>
-                  <p className="text-body opacity-90">AI is brilliant. Automation is powerful. But they should serve your creative intention, not replace it. Our framework treats automation as a tool you control, not something that controls your choices. You decide what gets assisted. You decide what stays fully in your hands. The AI is there to handle the genuinely tedious bits — not to make decisions about your creative work.</p>
-                </div>
-              </StaggeredChild>
-              <StaggeredChild>
-                <div>
-                  <h3 className="text-h4 text-accent-orange mb-4">5. Simplicity as a Feature</h3>
-                  <p className="text-body opacity-90">Modern tools are bloated. Everything crammed in. Our framework is built on the opposite belief: less is more. A focused set of capabilities, beautifully executed, that let you focus on actual creative work instead of fighting software. Simple enough that you don't need a tutorial. Powerful enough that you never outgrow it.</p>
+                <div className="mt-16 space-y-12 border-t border-neutral-700 pt-12">
+                  <div>
+                    <h3 className="text-h4 text-accent-orange mb-4">1. Protect the Sketch</h3>
+                    <p className="text-body opacity-90">Sketching is where ideas are born. Not perfectly rendered, not polished, not ready — just real. Our framework keeps that space sacred. You can rough-sketch ideas without your tool judging them, optimising them, or trying to finish them. The sketch stays rough until you decide it's ready to evolve. The tool gets out of the way and lets your brain work.</p>
+                  </div>
+                  <div>
+                    <h3 className="text-h4 text-accent-orange mb-4">2. Deepen Collaboration</h3>
+                    <p className="text-body opacity-90">Real collaboration isn't about everyone having access to the same file. It's about everyone having access to the same thinking process. Our framework builds in space for actual dialogue about creative decisions. Feedback that's tied to intention. Discussion that shapes the work before it becomes fixed. It's slow. It's deliberate. It's how great creative work actually gets made.</p>
+                  </div>
+                  <div>
+                    <h3 className="text-h4 text-accent-orange mb-4">3. Rhythm Over Speed</h3>
+                    <p className="text-body opacity-90">Good creative work has a rhythm. Sketching. Thinking. Discussing. Refining. Sketching again. Most tools try to collapse this into a single fast process. Our framework respects the natural rhythm of creative work. Some moments need to be fast. Some need to be slow. The tool adapts to the creative process, not the other way around.</p>
+                  </div>
+                  <div>
+                    <h3 className="text-h4 text-accent-orange mb-4">4. Intention Over Automation</h3>
+                    <p className="text-body opacity-90">AI is brilliant. Automation is powerful. But they should serve your creative intention, not replace it. Our framework treats automation as a tool you control, not something that controls your choices. You decide what gets assisted. You decide what stays fully in your hands. The AI is there to handle the genuinely tedious bits — not to make decisions about your creative work.</p>
+                  </div>
+                  <div>
+                    <h3 className="text-h4 text-accent-orange mb-4">5. Simplicity as a Feature</h3>
+                    <p className="text-body opacity-90">Modern tools are bloated. Everything crammed in. Our framework is built on the opposite belief: less is more. A focused set of capabilities, beautifully executed, that let you focus on actual creative work instead of fighting software. Simple enough that you don't need a tutorial. Powerful enough that you never outgrow it.</p>
+                  </div>
                 </div>
               </StaggeredChild>
             </StaggeredContainer>

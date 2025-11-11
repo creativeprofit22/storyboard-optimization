@@ -1,0 +1,8 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Shield outline -->
+  <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" stroke="#ff6b35" stroke-width="2.5" fill="none"/>
+  <!-- Sketch lines inside -->
+  <path d="M45 35 Q50 40 55 35" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M40 50 L60 50" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M45 65 Q50 60 55 65" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
