@@ -124,11 +124,21 @@ export default function Home() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">IMAGINE THIS INSTEAD</h2>
             <StaggeredContainer className="space-y-6 text-body">
-            <p>What if your storyboarding tool didn't try to do your job for you? What if it actually supported your job?</p>
-            <p>Imagine a tool that understands the creative process instead of trying to shortcut it. One that gives you space to think messy, collaborate deeply, and refine purposefully. A tool that makes those "wasted" minutes in your process actually valuable. Where sketching isn't a chore — it's the whole point. Where collaboration means actually working through ideas together, not just dumping files and hoping someone reads the comments.</p>
-            <p>What if speed wasn't the metric? What if the metric was: did this help us think better? Did this make the creative work stronger?</p>
-              <p>This isn't about better templates or smarter AI. It's about fundamentally rethinking what a storyboard tool is supposed to do. It's supposed to be an extension of your creative mind, not a replacement for it. A partner in the process, not a shortcut around it. Something that makes you more creative, not just faster at feeling creative.</p>
-              <p className="text-accent-orange font-semibold text-lg">That's the shift. And it changes everything.</p>
+              <StaggeredChild>
+                <p>What if your storyboarding tool didn't try to do your job for you? What if it actually supported your job?</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>Imagine a tool that understands the creative process instead of trying to shortcut it. One that gives you space to think messy, collaborate deeply, and refine purposefully. A tool that makes those "wasted" minutes in your process actually valuable. Where sketching isn't a chore — it's the whole point. Where collaboration means actually working through ideas together, not just dumping files and hoping someone reads the comments.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>What if speed wasn't the metric? What if the metric was: did this help us think better? Did this make the creative work stronger?</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>This isn't about better templates or smarter AI. It's about fundamentally rethinking what a storyboard tool is supposed to do. It's supposed to be an extension of your creative mind, not a replacement for it. A partner in the process, not a shortcut around it. Something that makes you more creative, not just faster at feeling creative.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p className="text-accent-orange font-semibold text-lg">That's the shift. And it changes everything.</p>
+              </StaggeredChild>
             </StaggeredContainer>
           </div>
         </section>
