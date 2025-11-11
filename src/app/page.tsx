@@ -25,7 +25,7 @@ export default function Home() {
 
           {/* Illustration - Right Column */}
           <div className="flex justify-center lg:justify-end">
-            <div className="w-full max-w-lg">
+            <div className="w-full max-w-2xl">
               <HeroIllustration />
             </div>
           </div>
