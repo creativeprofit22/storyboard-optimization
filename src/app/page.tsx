@@ -4,7 +4,7 @@
 export default function Home() {
   return (
     <main className="bg-primary-dark text-primary-light">
-      {/* SECTION 1: HERO - ALL 8 SECTIONS LIVE NOW */}
+      {/* SECTION 1: HERO - WEBHOOK NOW ACTIVE - DEPLOYING ALL 8 SECTIONS */}
       <section className="h-screen w-full bg-primary-dark flex items-center justify-center px-4">
         <div className="text-center max-w-4xl">
           <h1 className="text-h1 text-accent-orange mb-6">THEY'RE CONNING YOU, MATE.</h1>
