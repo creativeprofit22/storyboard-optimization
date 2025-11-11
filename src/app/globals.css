@@ -42,6 +42,24 @@ h3 { @apply font-clash font-semibold text-h3; }
 h4 { @apply font-clash font-semibold text-h4; }
 h5 { @apply font-clash font-medium text-h5; }
 
+/* Overflow Protection for Mobile Readability */
+p, h1, h2, h3, h4, h5 {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Reusable Padding Utilities */
+@layer components {
+  .section-padding {
+    @apply px-6 sm:px-8 lg:px-16 py-20 sm:py-24;
+  }
+
+  .section-padding-compact {
+    @apply px-6 sm:px-8 lg:px-16 py-12 sm:py-16;
+  }
+}
+
 /* Utility Classes */
 .text-gradient-orange {
   background: linear-gradient(to right, #ff6b35, #ff8a50);
@@ -68,7 +86,49 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
-/* Smooth Scrolling */
+/*
+  PERFORMANCE OPTIMIZATION: Layout Containment
+
+  Benefits:
+  - Isolates layout calculations to improve rendering performance
+  - Prevents layout thrashing during scroll animations
+  - Reduces paint area and composite layer updates
+  - Better browser optimization opportunities
+*/
+.animated-section {
+  contain: layout style paint;
+}
+
+/*
+  PERFORMANCE OPTIMIZATION: GPU Acceleration Hints
+
+  Benefits:
+  - Forces elements onto their own composite layers
+  - Enables hardware acceleration for transforms and opacity
+  - Smoother 60fps animations
+  - Reduces main thread work during animations
+*/
+@media (prefers-reduced-motion: no-preference) {
+  .animated-section {
+    will-change: transform, opacity;
+  }
+
+  /* Remove will-change after animation completes to free GPU memory */
+  .animated-section.animation-complete {
+    will-change: auto;
+  }
+}
+
+/*
+  PERFORMANCE OPTIMIZATION: Custom Animation Frames
+
+  For any elements using CSS custom properties for animation frames
+*/
+[style*="--animation-frame"] {
+  will-change: transform, opacity;
+}
+
+/* Smooth Scrolling with Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -76,4 +136,19 @@ select:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Disable will-change when motion is reduced to save resources */
+  .animated-section,
+  [style*="--animation-frame"] {
+    will-change: auto !important;
+  }
+}
+
+/*
+  PERFORMANCE OPTIMIZATION: Image Loading
+
+  Prevents layout shifts by ensuring images have defined dimensions
+*/
+img[loading="lazy"] {
+  content-visibility: auto;
 }

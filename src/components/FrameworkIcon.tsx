@@ -2,31 +2,14 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 interface FrameworkIconProps {
   icon: 'sketch' | 'collaboration' | 'rhythm' | 'intention' | 'simplicity'
   title: string
   className?: string
   index?: number
-}
-
-function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-    }
-
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
-
-  return prefersReducedMotion
 }
 
 const iconMap = {
@@ -48,12 +31,28 @@ export function FrameworkIcon({
 
   const IconWrapper = prefersReducedMotion ? 'div' : motion.div
 
-  const hoverProps = prefersReducedMotion
-    ? {}
-    : {
-        whileHover: { scale: 1.1, rotate: 5 },
-        transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
-      }
+  // Memoize hover animation props
+  const hoverProps = useMemo(() => {
+    if (prefersReducedMotion) return {}
+
+    return {
+      whileHover: { scale: 1.1, rotate: 5 },
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+      style: { willChange: 'transform' }
+    }
+  }, [prefersReducedMotion])
+
+  // Memoize background animation props
+  const backgroundAnimationProps = useMemo(() => {
+    if (prefersReducedMotion) return {}
+
+    return {
+      initial: false,
+      animate: isHovered ? { scale: 1.2 } : { scale: 1 },
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
+      style: { willChange: isHovered ? 'transform' : 'auto' }
+    }
+  }, [isHovered, prefersReducedMotion])
 
   return (
     <IconWrapper
@@ -66,12 +65,10 @@ export function FrameworkIcon({
         {/* Background circle with accent color */}
         <motion.div
           className="absolute inset-0 rounded-full bg-accent-orange opacity-10 group-hover:opacity-20 transition-opacity duration-300"
-          initial={false}
-          animate={isHovered && !prefersReducedMotion ? { scale: 1.2 } : { scale: 1 }}
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          {...backgroundAnimationProps}
         />
 
-        {/* Icon */}
+        {/* Icon with GPU acceleration */}
         <div className="relative w-full h-full p-3 sm:p-4">
           <Image
             src={iconMap[icon]}
@@ -79,6 +76,11 @@ export function FrameworkIcon({
             fill
             className="object-contain filter group-hover:brightness-110 transition-all duration-300"
             sizes="(max-width: 640px) 80px, (max-width: 1024px) 96px, 112px"
+            style={{
+              // GPU acceleration hint
+              transform: 'translateZ(0)',
+              willChange: 'transform, opacity'
+            }}
           />
         </div>
       </div>

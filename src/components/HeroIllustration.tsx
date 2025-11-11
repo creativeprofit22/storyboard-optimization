@@ -2,29 +2,29 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 interface HeroIllustrationProps {
   className?: string
   priority?: boolean
 }
 
-function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+// Hook to detect mobile viewport
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
 
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  return prefersReducedMotion
+  return isMobile
 }
 
 export function HeroIllustration({
@@ -32,32 +32,52 @@ export function HeroIllustration({
   priority = true
 }: HeroIllustrationProps) {
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
 
   const ImageWrapper = prefersReducedMotion ? 'div' : motion.div
 
-  const animationProps = prefersReducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, scale: 0.95 },
-        animate: { opacity: 1, scale: 1 },
-        transition: {
-          duration: 1.2,
-          delay: 0.3,
-          ease: [0.4, 0, 0.2, 1],
-        },
-      }
+  // Mobile-optimized animation timing
+  const animationProps = useMemo(() => {
+    if (prefersReducedMotion) return {}
+
+    return {
+      initial: { opacity: 0, scale: 0.95 },
+      animate: { opacity: 1, scale: 1 },
+      transition: {
+        duration: isMobile ? 0.8 : 1.2,
+        delay: isMobile ? 0.1 : 0.3,
+        ease: [0.4, 0, 0.2, 1],
+      },
+      style: { willChange: 'transform, opacity' }
+    }
+  }, [prefersReducedMotion, isMobile])
 
   return (
-    <ImageWrapper className={`relative ${className}`} {...animationProps}>
-      <Image
-        src="/images/hero/hero-illustration.png"
-        alt="Creative professional overwhelmed by storyboard tool interface, breaking free toward creative freedom"
-        width={800}
-        height={600}
-        priority={priority}
-        className="w-full h-auto object-contain"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
-      />
+    <ImageWrapper
+      className={`relative ${className}`}
+      {...animationProps}
+    >
+      {/*
+        FIX: Prevent Cumulative Layout Shift (CLS)
+        - Use aspect-[4/3] container to reserve space before image loads
+        - Use Next.js Image fill prop with object-contain
+        - Explicit aspect ratio prevents layout shifts during image loading
+      */}
+      <div className="relative aspect-[4/3] w-full">
+        <Image
+          src="/images/hero/hero-illustration.png"
+          alt="Creative professional overwhelmed by storyboard tool interface, breaking free toward creative freedom"
+          fill
+          priority={priority}
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+          style={{
+            // GPU acceleration hint
+            transform: 'translateZ(0)',
+            willChange: 'transform, opacity'
+          }}
+        />
+      </div>
     </ImageWrapper>
   )
 }

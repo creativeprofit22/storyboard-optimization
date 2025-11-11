@@ -1,70 +1,88 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { useState, useEffect, useMemo } from 'react'
+import { useSharedIntersectionObserver } from '@/hooks/useSharedIntersectionObserver'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 interface ProblemSolutionDiagramProps {
   className?: string
 }
 
-function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+// Hook to detect mobile viewport
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
 
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  return prefersReducedMotion
+  return isMobile
 }
 
 export function ProblemSolutionDiagram({
   className = ''
 }: ProblemSolutionDiagramProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, {
-    once: true,
-    margin: '-100px',
-    amount: 0.3
+  const { ref, isInView } = useSharedIntersectionObserver({
+    threshold: 0.3,
+    rootMargin: '-100px',
+    once: true
   })
+
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
 
   const DiagramWrapper = prefersReducedMotion ? 'div' : motion.div
 
-  const animationProps = prefersReducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 40 },
-        animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 },
-        transition: {
-          duration: 0.8,
-          ease: [0.4, 0, 0.2, 1],
-        },
-      }
+  // Mobile-optimized animation config
+  const animationProps = useMemo(() => {
+    if (prefersReducedMotion) return {}
+
+    return {
+      initial: { opacity: 0, y: 40 },
+      animate: isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 },
+      transition: {
+        duration: isMobile ? 0.6 : 0.8,
+        ease: [0.4, 0, 0.2, 1],
+      },
+      style: { willChange: isInView ? 'transform, opacity' : 'auto' }
+    }
+  }, [prefersReducedMotion, isInView, isMobile])
 
   return (
-    <div ref={ref} className={`w-full ${className}`}>
+    <div ref={ref as any} className={`w-full animated-section ${className}`}>
       <DiagramWrapper
         className="relative w-full max-w-4xl mx-auto"
         {...animationProps}
       >
-        <Image
-          src="/images/diagrams/problem-solution.png"
-          alt="Storyboard Tool Comparison - Current tools show cognitive load, constraints, and chaos versus our solution providing protection, collaboration, and clarity through a bridging concept"
-          width={1200}
-          height={600}
-          className="w-full h-auto"
-          sizes="(max-width: 1024px) 100vw, 1200px"
-          loading="lazy"
-        />
+        {/*
+          FIX: Prevent Cumulative Layout Shift (CLS)
+          - Use aspect-[2/1] container to reserve space before image loads
+          - Use Next.js Image fill prop with object-contain
+          - Explicit aspect ratio prevents layout shifts during image loading
+        */}
+        <div className="relative aspect-[2/1] w-full">
+          <Image
+            src="/images/diagrams/problem-solution.png"
+            alt="Storyboard Tool Comparison - Current tools show cognitive load, constraints, and chaos versus our solution providing protection, collaboration, and clarity through a bridging concept"
+            fill
+            className="object-contain"
+            sizes="(max-width: 1024px) 100vw, 1200px"
+            loading="lazy"
+            style={{
+              // GPU acceleration hint
+              transform: 'translateZ(0)',
+              willChange: 'transform, opacity'
+            }}
+          />
+        </div>
       </DiagramWrapper>
 
       {/* Accessibility text fallback */}

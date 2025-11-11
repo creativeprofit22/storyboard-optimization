@@ -35,12 +35,12 @@ const config: Config = {
         inter: ['Inter', 'sans-serif'],
       },
       fontSize: {
-        'h1': ['72px', { lineHeight: '1.2', letterSpacing: '-2px' }],
-        'h2': ['48px', { lineHeight: '1.3', letterSpacing: '-1px' }],
-        'h3': ['36px', { lineHeight: '1.4' }],
-        'h4': ['28px', { lineHeight: '1.4' }],
-        'h5': ['22px', { lineHeight: '1.5' }],
-        'body-lg': ['18px', { lineHeight: '1.6' }],
+        'h1': ['clamp(32px, 8vw, 72px)', { lineHeight: '1.2', letterSpacing: '-2px' }],
+        'h2': ['clamp(28px, 6vw, 48px)', { lineHeight: '1.3', letterSpacing: '-1px' }],
+        'h3': ['clamp(24px, 4vw, 36px)', { lineHeight: '1.4' }],
+        'h4': ['clamp(20px, 3vw, 28px)', { lineHeight: '1.4' }],
+        'h5': ['clamp(18px, 2.5vw, 22px)', { lineHeight: '1.5' }],
+        'body-lg': ['clamp(16px, 2vw, 18px)', { lineHeight: '1.6' }],
         'body': ['16px', { lineHeight: '1.6' }],
         'body-sm': ['14px', { lineHeight: '1.6' }],
         'caption': ['12px', { lineHeight: '1.5', letterSpacing: '0.5px' }],
@@ -64,6 +64,17 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.section-padding': {
+          '@apply px-6 sm:px-8 lg:px-16 py-20 sm:py-24': {},
+        },
+        '.section-padding-compact': {
+          '@apply px-6 sm:px-8 lg:px-16 py-12 sm:py-16': {},
+        },
+      })
+    },
+  ],
 }
 export default config

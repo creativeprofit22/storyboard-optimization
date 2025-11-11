@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="bg-primary-dark text-primary-light">
       {/* SECTION 1: HERO - WITH ILLUSTRATION */}
-      <section className="min-h-screen w-full bg-primary-dark flex items-center justify-center px-4 py-20">
+      <section className="min-h-screen w-full bg-primary-dark flex items-center justify-center px-6 sm:px-8 lg:px-16 py-20">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
           {/* Text Content - Left Column */}
           <div className="text-center lg:text-left">
@@ -26,7 +26,9 @@ export default function Home() {
           {/* Illustration - Right Column */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-2xl">
-              <HeroIllustration />
+              <div className="relative aspect-[4/3] w-full">
+                <HeroIllustration />
+              </div>
             </div>
           </div>
         </div>
@@ -34,7 +36,7 @@ export default function Home() {
 
       {/* SECTION 2: THE LIE */}
       <AnimatedSection>
-        <section className="min-h-screen w-full bg-primary-light text-primary-dark py-20 px-4 sm:px-8 lg:px-16">
+        <section className="min-h-screen w-full bg-primary-light text-primary-dark px-6 sm:px-8 lg:px-16 py-20 sm:py-24">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">PRODUCTIVITY THEATRE</h2>
             <StaggeredContainer className="space-y-6 text-body">
@@ -57,7 +59,7 @@ export default function Home() {
 
       {/* SECTION 3: RESEARCH FINDINGS */}
       <AnimatedSection>
-        <section className="min-h-screen w-full bg-primary-dark py-20 px-4 sm:px-8 lg:px-16">
+        <section className="min-h-screen w-full bg-primary-dark px-6 sm:px-8 lg:px-16 py-20 sm:py-24">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-4">WHAT WE FOUND</h2>
             <StaggeredContainer className="space-y-12">
@@ -102,7 +104,7 @@ export default function Home() {
 
       {/* SECTION 3.5: PROBLEM VS SOLUTION DIAGRAM */}
       <AnimatedSection>
-        <section className="py-20 px-4 sm:px-8 bg-primary-light text-primary-dark">
+        <section className="px-6 sm:px-8 lg:px-16 py-20 sm:py-24 bg-primary-light text-primary-dark">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-h2 text-center mb-16">THE FUNDAMENTAL DIFFERENCE</h2>
             <ProblemSolutionDiagram />
@@ -112,7 +114,7 @@ export default function Home() {
 
       {/* SECTION 4: THE GAP */}
       <AnimatedSection>
-        <section className="min-h-screen w-full bg-primary-light text-primary-dark py-20 px-4 sm:px-8 lg:px-16">
+        <section className="min-h-screen w-full bg-primary-light text-primary-dark px-6 sm:px-8 lg:px-16 py-20 sm:py-24">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">WHY IT ALL BREAKS DOWN</h2>
             <StaggeredContainer className="space-y-6 text-body">
@@ -138,7 +140,7 @@ export default function Home() {
 
       {/* SECTION 5: TRANSITION */}
       <AnimatedSection>
-        <section className="py-24 px-4 bg-primary-dark flex items-center justify-center">
+        <section className="px-6 sm:px-8 lg:px-16 py-20 sm:py-24 bg-primary-dark flex items-center justify-center">
           <div className="text-center max-w-2xl">
             <h2 className="text-h2 text-accent-orange">But here's the thing: there's a better way to think about this. And we've started mapping it out.</h2>
           </div>
@@ -147,7 +149,7 @@ export default function Home() {
 
       {/* SECTION 6: THE VISION */}
       <AnimatedSection>
-        <section className="min-h-screen w-full bg-primary-light text-primary-dark py-20 px-4 sm:px-8 lg:px-16">
+        <section className="min-h-screen w-full bg-primary-light text-primary-dark px-6 sm:px-8 lg:px-16 py-20 sm:py-24">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">IMAGINE THIS INSTEAD</h2>
             <StaggeredContainer className="space-y-6 text-body">
@@ -173,7 +175,7 @@ export default function Home() {
 
       {/* SECTION 7: FRAMEWORK */}
       <AnimatedSection>
-        <section className="min-h-screen w-full bg-primary-dark py-20 px-4 sm:px-8 lg:px-16">
+        <section className="min-h-screen w-full bg-primary-dark px-6 sm:px-8 lg:px-16 py-20 sm:py-24">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-h2 mb-6">THE FRAMEWORK</h2>
             <StaggeredContainer className="space-y-10">
@@ -185,11 +187,11 @@ export default function Home() {
 
               {/* Framework Principles Grid with Icons & Text */}
               <StaggeredChild>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6 mt-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-6 mt-16">
                   {/* Principle 1 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                  <div className="flex flex-col items-center text-center max-w-xs mx-auto lg:max-w-none" tabIndex={0} aria-label="Principle: Protect the Sketch">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full" role="img" aria-label="Protect the Sketch icon">
                         <path d="M50 10 L75 25 L75 50 Q75 75 50 85 Q25 75 25 50 L25 25 Z" stroke="currentColor" strokeWidth="2.5" fill="none"/>
                         <path d="M45 35 Q50 40 55 35" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
                         <path d="M40 50 L60 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
@@ -197,13 +199,13 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-h5 text-accent-orange mb-3">Protect the Sketch</h3>
-                    <p className="text-sm text-primary-light opacity-80">Sketching is where ideas are born. We keep that space sacred, free from judgment.</p>
+                    <p className="text-body-sm sm:text-body text-primary-light opacity-80">Sketching is where ideas are born. We keep that space sacred, free from judgment.</p>
                   </div>
 
                   {/* Principle 2 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                  <div className="flex flex-col items-center text-center max-w-xs mx-auto lg:max-w-none" tabIndex={0} aria-label="Principle: Deepen Collaboration">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full" role="img" aria-label="Deepen Collaboration icon">
                         <circle cx="30" cy="25" r="6" stroke="currentColor" strokeWidth="2"/>
                         <path d="M24 35 L24 50 L36 50" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/>
                         <circle cx="50" cy="20" r="7" stroke="currentColor" strokeWidth="2"/>
@@ -215,13 +217,13 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-h5 text-accent-orange mb-3">Deepen Collaboration</h3>
-                    <p className="text-sm text-primary-light opacity-80">Real teamwork through shared thinking, not just file access.</p>
+                    <p className="text-body-sm sm:text-body text-primary-light opacity-80">Real teamwork through shared thinking, not just file access.</p>
                   </div>
 
                   {/* Principle 3 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                  <div className="flex flex-col items-center text-center max-w-xs mx-auto lg:max-w-none" tabIndex={0} aria-label="Principle: Rhythm Over Speed">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full" role="img" aria-label="Rhythm Over Speed icon">
                         <path d="M20 50 Q30 30 40 50 T60 50 T80 50" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                         <circle cx="25" cy="50" r="3" fill="currentColor"/>
                         <circle cx="50" cy="50" r="3" fill="currentColor"/>
@@ -232,13 +234,13 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-h5 text-accent-orange mb-3">Rhythm Over Speed</h3>
-                    <p className="text-sm text-primary-light opacity-80">Respect the natural pace of creative work.</p>
+                    <p className="text-body-sm sm:text-body text-primary-light opacity-80">Respect the natural pace of creative work.</p>
                   </div>
 
                   {/* Principle 4 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                  <div className="flex flex-col items-center text-center max-w-xs mx-auto lg:max-w-none" tabIndex={0} aria-label="Principle: Intention Over Automation">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full" role="img" aria-label="Intention Over Automation icon">
                         <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="2"/>
                         <circle cx="50" cy="50" r="23" stroke="currentColor" strokeWidth="2"/>
                         <circle cx="50" cy="50" r="11" stroke="currentColor" strokeWidth="2"/>
@@ -247,13 +249,13 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-h5 text-accent-orange mb-3">Intention Over Automation</h3>
-                    <p className="text-sm text-primary-light opacity-80">AI serves your vision, not the other way around.</p>
+                    <p className="text-body-sm sm:text-body text-primary-light opacity-80">AI serves your vision, not the other way around.</p>
                   </div>
 
                   {/* Principle 5 */}
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mb-4 text-accent-orange">
-                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full">
+                  <div className="flex flex-col items-center text-center max-w-xs mx-auto lg:max-w-none" tabIndex={0} aria-label="Principle: Simplicity as Feature">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-4 text-accent-orange">
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-full h-full" role="img" aria-label="Simplicity as Feature icon">
                         <path d="M30 60 L50 45 L70 60 L70 80 L30 80 Z" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinejoin="round"/>
                         <path d="M50 45 L50 65" stroke="currentColor" strokeWidth="2.5" fill="none"/>
                         <path d="M30 60 L50 45" stroke="currentColor" strokeWidth="2.5" fill="none"/>
@@ -261,7 +263,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <h3 className="text-h5 text-accent-orange mb-3">Simplicity as Feature</h3>
-                    <p className="text-sm text-primary-light opacity-80">Focused capabilities, beautifully executed.</p>
+                    <p className="text-body-sm sm:text-body text-primary-light opacity-80">Focused capabilities, beautifully executed.</p>
                   </div>
                 </div>
               </StaggeredChild>
@@ -298,7 +300,7 @@ export default function Home() {
 
       {/* SECTION 8: CTA */}
       <AnimatedSection>
-        <section className="min-h-screen w-full bg-primary-light text-primary-dark py-20 px-4 sm:px-8 lg:px-16">
+        <section className="min-h-screen w-full bg-primary-light text-primary-dark px-6 sm:px-8 lg:px-16 py-20 sm:py-24">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">LET'S BUILD THIS TOGETHER</h2>
           <StaggeredContainer className="space-y-6 text-body">

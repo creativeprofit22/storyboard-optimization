@@ -1,7 +1,9 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { useSharedIntersectionObserver } from '@/hooks/useSharedIntersectionObserver'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 interface AnimatedSectionProps {
   children: React.ReactNode
@@ -9,25 +11,21 @@ interface AnimatedSectionProps {
   delay?: number
 }
 
-// Hook to check if user prefers reduced motion
-function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+// Hook to detect mobile viewport
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    // Check initial preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-
-    // Listen for changes
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
 
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  return prefersReducedMotion
+  return isMobile
 }
 
 export function AnimatedSection({
@@ -35,36 +33,26 @@ export function AnimatedSection({
   className = '',
   delay = 0,
 }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
+  const { ref, isInView } = useSharedIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px',
+    once: true
+  })
+
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          // Stop observing once it's in view to prevent re-triggering
-          observer.unobserve(entry.target)
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px',
-      }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  // Memoize animation configuration based on device type
+  const animationConfig = useMemo(() => ({
+    duration: isMobile ? 0.4 : 0.6,
+    delay: isMobile ? Math.min(delay * 0.5, 0.1) : delay,
+    ease: [0.4, 0, 0.2, 1] as const, // --ease-standard from design system
+  }), [isMobile, delay])
 
   // If user prefers reduced motion, show content immediately
   if (prefersReducedMotion) {
     return (
-      <div ref={ref} className={className}>
+      <div ref={ref as any} className={`animated-section ${className}`}>
         {children}
       </div>
     )
@@ -72,15 +60,12 @@ export function AnimatedSection({
 
   return (
     <motion.div
-      ref={ref}
+      ref={ref as any}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.4, 0, 0.2, 1], // --ease-standard from design system
-      }}
-      className={className}
+      transition={animationConfig}
+      className={`animated-section ${className}`}
+      style={{ willChange: isInView ? 'transform, opacity' : 'auto' }}
     >
       {children}
     </motion.div>
@@ -95,35 +80,25 @@ export function StaggeredContainer({
   children: React.ReactNode
   className?: string
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
+  const { ref, isInView } = useSharedIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px',
+    once: true
+  })
+
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px',
-      }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  // Adjust stagger timing for mobile
+  const staggerConfig = useMemo(() => ({
+    staggerChildren: isMobile ? 0.05 : 0.1,
+    delayChildren: isMobile ? 0.1 : 0.2,
+  }), [isMobile])
 
   // If user prefers reduced motion, show content immediately
   if (prefersReducedMotion) {
     return (
-      <div ref={ref} className={className}>
+      <div ref={ref as any} className={`animated-section ${className}`}>
         {children}
       </div>
     )
@@ -131,19 +106,17 @@ export function StaggeredContainer({
 
   return (
     <motion.div
-      ref={ref}
+      ref={ref as any}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
       variants={{
         visible: {
-          transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.2,
-          },
+          transition: staggerConfig,
         },
         hidden: {},
       }}
-      className={className}
+      className={`animated-section ${className}`}
+      style={{ willChange: isInView ? 'transform, opacity' : 'auto' }}
     >
       {children}
     </motion.div>
@@ -159,6 +132,13 @@ export function StaggeredChild({
   className?: string
 }) {
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
+
+  // Memoize transition config
+  const transitionConfig = useMemo(() => ({
+    duration: isMobile ? 0.4 : 0.6,
+    ease: [0.4, 0, 0.2, 1] as const,
+  }), [isMobile])
 
   // If user prefers reduced motion, show content immediately
   if (prefersReducedMotion) {
@@ -171,11 +151,9 @@ export function StaggeredChild({
         visible: { opacity: 1, y: 0 },
         hidden: { opacity: 0, y: 20 },
       }}
-      transition={{
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1], // --ease-standard from design system
-      }}
+      transition={transitionConfig}
       className={className}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>
