@@ -9,6 +9,27 @@ interface AnimatedSectionProps {
   delay?: number
 }
 
+// Hook to check if user prefers reduced motion
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  useEffect(() => {
+    // Check initial preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    // Listen for changes
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  return prefersReducedMotion
+}
+
 export function AnimatedSection({
   children,
   className = '',
@@ -16,6 +37,7 @@ export function AnimatedSection({
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,6 +60,15 @@ export function AnimatedSection({
 
     return () => observer.disconnect()
   }, [])
+
+  // If user prefers reduced motion, show content immediately
+  if (prefersReducedMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
+  }
 
   return (
     <motion.div
@@ -66,6 +97,7 @@ export function StaggeredContainer({
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,6 +119,15 @@ export function StaggeredContainer({
 
     return () => observer.disconnect()
   }, [])
+
+  // If user prefers reduced motion, show content immediately
+  if (prefersReducedMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
+  }
 
   return (
     <motion.div
@@ -117,11 +158,22 @@ export function StaggeredChild({
   children: React.ReactNode
   className?: string
 }) {
+  const prefersReducedMotion = usePrefersReducedMotion()
+
+  // If user prefers reduced motion, show content immediately
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>
+  }
+
   return (
     <motion.div
       variants={{
         visible: { opacity: 1, y: 0 },
         hidden: { opacity: 0, y: 20 },
+      }}
+      transition={{
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className={className}
     >

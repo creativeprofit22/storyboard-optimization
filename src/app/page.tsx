@@ -25,10 +25,18 @@ export default function Home() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">PRODUCTIVITY THEATRE</h2>
             <StaggeredContainer className="space-y-6 text-body">
-            <p>You get it every time. "Look how fast you can create storyboards now!" they scream. Faster templates. Smarter suggestions. AI that finishes your thoughts before you've even finished thinking them.</p>
-            <p>And yeah, sure — you knock out a board in 45 minutes instead of an hour. You save maybe 10 minutes here, 15 minutes there. Brilliant. Absolutely brilliant. Except nobody's asking the question that matters: what the fuck are you actually losing in those minutes you're saving?</p>
-            <p>See, here's what the tools don't tell you. They're not selling you productivity. They're selling you the feeling of productivity. The sensation that you're moving fast, ticking boxes, getting things done. It's intoxicating. It feels like progress. And all the while, they've quietly removed the space where actual creativity lives. The moments where your brain wanders, makes unexpected connections, spots solutions that the algorithm would never suggest.</p>
-            <p>They've turned storyboarding into a chore with a fresh coat of paint. And they've made you feel grateful for it.</p>
+              <StaggeredChild>
+                <p>You get it every time. "Look how fast you can create storyboards now!" they scream. Faster templates. Smarter suggestions. AI that finishes your thoughts before you've even finished thinking them.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>And yeah, sure — you knock out a board in 45 minutes instead of an hour. You save maybe 10 minutes here, 15 minutes there. Brilliant. Absolutely brilliant. Except nobody's asking the question that matters: what the fuck are you actually losing in those minutes you're saving?</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>See, here's what the tools don't tell you. They're not selling you productivity. They're selling you the feeling of productivity. The sensation that you're moving fast, ticking boxes, getting things done. It's intoxicating. It feels like progress. And all the while, they've quietly removed the space where actual creativity lives. The moments where your brain wanders, makes unexpected connections, spots solutions that the algorithm would never suggest.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>They've turned storyboarding into a chore with a fresh coat of paint. And they've made you feel grateful for it.</p>
+              </StaggeredChild>
             </StaggeredContainer>
           </div>
         </section>
@@ -81,11 +89,21 @@ export default function Home() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">WHY IT ALL BREAKS DOWN</h2>
             <StaggeredContainer className="space-y-6 text-body">
-            <p>So everyone else in the industry is out there obsessing about features. More templates. Faster rendering. Better AI suggestions. Plugin integrations. They're optimizing for the wrong thing entirely.</p>
-            <p>They're solving the speed problem. They're completely missing the creativity problem.</p>
-            <p>A storyboard tool that prioritises speed over space, templates over thinking, polish over process — it's not helping creatives. It's replacing them with a slightly faster version of busy work. And the creative professionals who use it? They end up wondering why they feel less creative despite having more "productive" tools.</p>
-              <p>Here's what needs to happen: storyboarding tools need to flip. Stop trying to get creatives out of the process faster. Start designing tools that get creatives deeper into the process. Tools that protect the space where ideas actually form. Tools that make collaboration mean something again. Tools that aren't trying to finish your thoughts — they're trying to help you think better.</p>
-              <p className="text-accent-orange font-semibold text-lg">That's the gap nobody's filling. Until now.</p>
+              <StaggeredChild>
+                <p>So everyone else in the industry is out there obsessing about features. More templates. Faster rendering. Better AI suggestions. Plugin integrations. They're optimizing for the wrong thing entirely.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>They're solving the speed problem. They're completely missing the creativity problem.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>A storyboard tool that prioritises speed over space, templates over thinking, polish over process — it's not helping creatives. It's replacing them with a slightly faster version of busy work. And the creative professionals who use it? They end up wondering why they feel less creative despite having more "productive" tools.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p>Here's what needs to happen: storyboarding tools need to flip. Stop trying to get creatives out of the process faster. Start designing tools that get creatives deeper into the process. Tools that protect the space where ideas actually form. Tools that make collaboration mean something again. Tools that aren't trying to finish your thoughts — they're trying to help you think better.</p>
+              </StaggeredChild>
+              <StaggeredChild>
+                <p className="text-accent-orange font-semibold text-lg">That's the gap nobody's filling. Until now.</p>
+              </StaggeredChild>
             </StaggeredContainer>
           </div>
         </section>
