@@ -57,10 +57,10 @@ export function ProblemSolutionDiagram({
         {...animationProps}
       >
         <Image
-          src="/images/diagrams/problem-solution.jpeg"
-          alt="Storyboard Tools: From Chaos to Clarity - Comparison diagram showing current tools (cognitive load, constraints) versus our solution (protection, collaboration)"
+          src="/images/diagrams/problem-solution.png"
+          alt="Storyboard Tool Comparison - Current tools show cognitive load, constraints, and chaos versus our solution providing protection, collaboration, and clarity through a bridging concept"
           width={1200}
-          height={800}
+          height={600}
           className="w-full h-auto"
           sizes="(max-width: 1024px) 100vw, 1200px"
           loading="lazy"
