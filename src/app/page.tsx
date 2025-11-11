@@ -47,10 +47,12 @@ export default function Home() {
         <section className="min-h-screen w-full bg-primary-dark py-20 px-4 sm:px-8 lg:px-16">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-4">WHAT WE FOUND</h2>
-            <div className="mb-12 text-body opacity-90">
-              <p>A while back, we started digging into why so many brilliant creative minds felt hollow using modern storyboard tools. Not frustrated with features. Not complaining about interface design. Something deeper. A sense that the tools were doing something to them rather than for them. We started asking the right questions. Here's what we uncovered.</p>
-            </div>
             <StaggeredContainer className="space-y-12">
+              <StaggeredChild>
+                <div className="mb-12 text-body opacity-90">
+                  <p>A while back, we started digging into why so many brilliant creative minds felt hollow using modern storyboard tools. Not frustrated with features. Not complaining about interface design. Something deeper. A sense that the tools were doing something to them rather than for them. We started asking the right questions. Here's what we uncovered.</p>
+                </div>
+              </StaggeredChild>
               <StaggeredChild>
                 <div>
                   <h3 className="text-h4 mb-4">The Cognitive Load Trap</h3>
@@ -75,10 +77,12 @@ export default function Home() {
                   <p className="text-body opacity-90">Here's the one nobody talks about. Great creative work needs space. Space to breathe. Space to sit with an idea that isn't fully formed yet. Space to sketch something bad before it becomes something good. Modern storyboard tools are fast. They're smooth. They're polished. They don't leave any room for the mess. And the mess is where creativity actually lives.</p>
                 </div>
               </StaggeredChild>
+              <StaggeredChild>
+                <div className="mt-12 pt-8 border-t border-neutral-700 text-body opacity-90">
+                  <p>We realised we weren't looking at a tools problem. We were looking at a philosophy problem. Every major storyboarding platform was built on the same assumption: make it faster, make it easier, get it done. And none of them stopped to ask: but at what cost to the creative process itself?</p>
+                </div>
+              </StaggeredChild>
             </StaggeredContainer>
-            <div className="mt-12 pt-8 border-t border-neutral-700 text-body opacity-90">
-              <p>We realised we weren't looking at a tools problem. We were looking at a philosophy problem. Every major storyboarding platform was built on the same assumption: make it faster, make it easier, get it done. And none of them stopped to ask: but at what cost to the creative process itself?</p>
-            </div>
           </div>
         </section>
       </AnimatedSection>
@@ -149,10 +153,12 @@ export default function Home() {
         <section className="min-h-screen w-full bg-primary-dark py-20 px-4 sm:px-8 lg:px-16">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-6">THE FRAMEWORK</h2>
-            <div className="mb-12 text-body opacity-90">
-              <p>We've started building something on five core principles. These aren't features. They're philosophical commitments about how a tool should actually serve creative work. Here's what we're thinking:</p>
-            </div>
             <StaggeredContainer className="space-y-10">
+              <StaggeredChild>
+                <div className="mb-12 text-body opacity-90">
+                  <p>We've started building something on five core principles. These aren't features. They're philosophical commitments about how a tool should actually serve creative work. Here's what we're thinking:</p>
+                </div>
+              </StaggeredChild>
               <StaggeredChild>
                 <div>
                   <h3 className="text-h4 text-accent-orange mb-4">1. Protect the Sketch</h3>
@@ -193,16 +199,26 @@ export default function Home() {
         <section className="min-h-screen w-full bg-primary-light text-primary-dark py-20 px-4 sm:px-8 lg:px-16">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-h2 mb-12">LET'S BUILD THIS TOGETHER</h2>
-          <div className="space-y-6 text-body mb-12">
-            <p>Here's the honest bit: this is early stage. We've got the framework sketched out. We've got the philosophy locked in. What we don't have yet is your voice in the room.</p>
-            <p>Because here's what we know — any tool worth building for creatives has to be built with creatives. Not for you. With you. Your frustrations. Your workflows. Your non-negotiables. The specific ways you actually work, not the ways tools think you should work.</p>
-            <p>We're looking for creative professionals who are tired of the bullshit. Who've felt that slow suffocation of your creative process inside current tools. Who want to be part of building something that actually respects how creativity works.</p>
-            <p>Your feedback shapes what comes next. Your input decides priorities. Your voice decides whether this becomes a real alternative or just another pretty concept.</p>
-          </div>
-          <div className="bg-primary-dark text-primary-light p-8 rounded-lg">
-            <p className="text-body-lg font-semibold mb-4">Tell us what you think. Tell us what you need. Tell us how storyboarding has let you down.</p>
-            <p className="text-body opacity-90">We're listening. And we're building this thing for people like you.</p>
-          </div>
+          <StaggeredContainer className="space-y-6 text-body mb-12">
+            <StaggeredChild>
+              <p>Here's the honest bit: this is early stage. We've got the framework sketched out. We've got the philosophy locked in. What we don't have yet is your voice in the room.</p>
+            </StaggeredChild>
+            <StaggeredChild>
+              <p>Because here's what we know — any tool worth building for creatives has to be built with creatives. Not for you. With you. Your frustrations. Your workflows. Your non-negotiables. The specific ways you actually work, not the ways tools think you should work.</p>
+            </StaggeredChild>
+            <StaggeredChild>
+              <p>We're looking for creative professionals who are tired of the bullshit. Who've felt that slow suffocation of your creative process inside current tools. Who want to be part of building something that actually respects how creativity works.</p>
+            </StaggeredChild>
+            <StaggeredChild>
+              <p>Your feedback shapes what comes next. Your input decides priorities. Your voice decides whether this becomes a real alternative or just another pretty concept.</p>
+            </StaggeredChild>
+          </StaggeredContainer>
+          <StaggeredChild>
+            <div className="bg-primary-dark text-primary-light p-8 rounded-lg">
+              <p className="text-body-lg font-semibold mb-4">Tell us what you think. Tell us what you need. Tell us how storyboarding has let you down.</p>
+              <p className="text-body opacity-90">We're listening. And we're building this thing for people like you.</p>
+            </div>
+          </StaggeredChild>
             <div className="mt-12 p-8 border-2 border-primary-dark rounded-lg text-center bg-neutral-50">
               <p className="text-body-lg text-primary-dark opacity-70">📧 Feedback form coming next</p>
             </div>

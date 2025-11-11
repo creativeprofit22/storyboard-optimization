@@ -78,7 +78,7 @@ export function AnimatedSection({
       transition={{
         duration: 0.6,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94], // cubic-bezier from design system
+        ease: [0.4, 0, 0.2, 1], // --ease-standard from design system
       }}
       className={className}
     >
@@ -173,7 +173,7 @@ export function StaggeredChild({
       }}
       transition={{
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.4, 0, 0.2, 1], // --ease-standard from design system
       }}
       className={className}
     >
