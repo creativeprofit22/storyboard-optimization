@@ -1,21 +1,34 @@
 'use client'
 
 import { AnimatedSection, StaggeredContainer, StaggeredChild } from '@/components/AnimatedSection'
+import { HeroIllustration } from '@/components/HeroIllustration'
+import { FrameworkIcon, FrameworkIconGrid } from '@/components/FrameworkIcon'
+import { ProblemSolutionDiagram } from '@/components/ProblemSolutionDiagram'
 
 // Scroll animations now active
 export default function Home() {
   return (
     <main className="bg-primary-dark text-primary-light">
-      {/* SECTION 1: HERO - WEBHOOK NOW ACTIVE - DEPLOYING ALL 8 SECTIONS */}
-      <section className="h-screen w-full bg-primary-dark flex items-center justify-center px-4">
-        <div className="text-center max-w-4xl">
-          <h1 className="text-h1 text-accent-orange mb-6">THEY'RE CONNING YOU, MATE.</h1>
-          <p className="text-2xl font-semibold mb-6 opacity-90">
-            Your storyboard tool just made you think you're being productive. It's brilliant at that. The problem is, you're not.
-          </p>
-          <p className="text-body-lg opacity-80 max-w-2xl mx-auto">
-            Your Adobe. Your Firefly. Whatever the hell you're using to knock out storyboards. They've convinced you that this grinding, tedious, repetitive process that eats your day is somehow speeding you up. Here's the brutal truth: they've found a way to make you feel like you're winning whilst your actual creativity slowly suffocates in the background.
-          </p>
+      {/* SECTION 1: HERO - WITH ILLUSTRATION */}
+      <section className="min-h-screen w-full bg-primary-dark flex items-center justify-center px-4 py-20">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
+          {/* Text Content - Left Column */}
+          <div className="text-center lg:text-left">
+            <h1 className="text-h1 text-accent-orange mb-6">THEY'RE CONNING YOU, MATE.</h1>
+            <p className="text-2xl font-semibold mb-6 opacity-90">
+              Your storyboard tool just made you think you're being productive. It's brilliant at that. The problem is, you're not.
+            </p>
+            <p className="text-body-lg opacity-80 max-w-2xl lg:mx-0 mx-auto">
+              Your Adobe. Your Firefly. Whatever the hell you're using to knock out storyboards. They've convinced you that this grinding, tedious, repetitive process that eats your day is somehow speeding you up. Here's the brutal truth: they've found a way to make you feel like you're winning whilst your actual creativity slowly suffocates in the background.
+            </p>
+          </div>
+
+          {/* Illustration - Right Column */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-lg">
+              <HeroIllustration />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -83,6 +96,16 @@ export default function Home() {
                 </div>
               </StaggeredChild>
             </StaggeredContainer>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* SECTION 3.5: PROBLEM VS SOLUTION DIAGRAM */}
+      <AnimatedSection>
+        <section className="py-20 px-4 sm:px-8 bg-primary-light text-primary-dark">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-h2 text-center mb-16">THE FUNDAMENTAL DIFFERENCE</h2>
+            <ProblemSolutionDiagram />
           </div>
         </section>
       </AnimatedSection>
@@ -159,6 +182,18 @@ export default function Home() {
                   <p>We've started building something on five core principles. These aren't features. They're philosophical commitments about how a tool should actually serve creative work. Here's what we're thinking:</p>
                 </div>
               </StaggeredChild>
+
+              {/* Framework Icons Grid */}
+              <StaggeredChild>
+                <FrameworkIconGrid className="my-16">
+                  <FrameworkIcon icon="sketch" title="Protect the Sketch" />
+                  <FrameworkIcon icon="collaboration" title="Deepen Collaboration" />
+                  <FrameworkIcon icon="rhythm" title="Rhythm Over Speed" />
+                  <FrameworkIcon icon="intention" title="Intention Over Automation" />
+                  <FrameworkIcon icon="simplicity" title="Simplicity as a Feature" />
+                </FrameworkIconGrid>
+              </StaggeredChild>
+
               <StaggeredChild>
                 <div>
                   <h3 className="text-h4 text-accent-orange mb-4">1. Protect the Sketch</h3>
